@@ -8,7 +8,7 @@ export default function WeatherGPTMobileUI() {
 
   const handleSendMessage = async (query: string) => {
   try {
-    const res = await fetch("https://YOUR-RENDER-APP-NAME.onrender.com/api/chat", {
+    const res = await fetch("https://weather-gpt-mxit.onrender.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
