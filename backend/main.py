@@ -8,12 +8,21 @@ from dotenv import load_dotenv
 from langchain.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import create_agent
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables
 load_dotenv()
 
 # Initialize FastAPI
 app = FastAPI(title="WeatherGPT API")
+# Add this block right below app = FastAPI(...)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins, including your Vercel URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- 1. LLM Tools Definitions ---
 @tool
@@ -96,3 +105,4 @@ async def simulate_mesh_routing(req: MeshAlertRequest):
         "system_status": status,
         "message_decrypted": req.alert_payload
     }
+
