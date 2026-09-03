@@ -45,7 +45,7 @@ def generate_agricultural_advisory(rain_mm: float, crop: str) -> str:
 
 # --- 2. AI Initialization ---
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+    model="gemini-3.6-flash",
     temperature=0.3
 )
 tools = [get_nwp_forecast, generate_agricultural_advisory]
