@@ -44,7 +44,10 @@ def generate_agricultural_advisory(rain_mm: float, crop: str) -> str:
     return "Weather is clear. Safe to continue standard farming operations."
 
 # --- 2. AI Initialization ---
-llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0.3
+)
 tools = [get_nwp_forecast, generate_agricultural_advisory]
 
 # LangChain 1.0+ replaces AgentExecutor entirely with create_agent
