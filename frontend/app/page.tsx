@@ -6,6 +6,25 @@ export default function WeatherGPTMobileUI() {
   const [activeTab, setActiveTab] = useState('home');
   const [isOfflineMode, setIsOfflineMode] = useState(false);
 
+  const handleSendMessage = async (query: string) => {
+  try {
+    const res = await fetch("https://YOUR-RENDER-APP-NAME.onrender.com/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_query: query,
+        latitude: 18.5204, // e.g. Pune coordinates
+        longitude: 73.8567,
+        language: "en"
+      }),
+    });
+    const data = await res.json();
+    console.log("AI Response:", data.response);
+  } catch (err) {
+    console.error("API Call Failed:", err);
+  }
+};
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       {/* Mobile Device Container */}
